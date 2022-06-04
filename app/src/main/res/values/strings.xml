@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ViewModel</string>
+    <string name="continue_button_label">Continue</string>
+    <string name="startButtonLabel">Start Quiz</string>
+</resources>
