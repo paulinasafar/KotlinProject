@@ -69,3 +69,20 @@ Es soll Schritt für Schritt die Logik des Quiz-Spiels für das ``GameFragment``
     - Falsch beantwortete Fragen (nicht aktuell) sollen mit rotem Hintergrund angezeigt werden 
     - Richtig beantwortete Fragen (nicht aktuell) sollen mit grünem Hintergrund angezeigt werden 
     - Unbeantwortete Fragen (nicht aktuell) sollen mit grauem Hintergrund angezeigt werden 
+
+
+### Task 3: Anbindung REST Schnittstelle
+In diesem Schritt soll die Liste der Fragen von einer REST Schnittstelle konsumiert werden. Wir verwenden dazu die frei verfügbare Quiz-Datenbank Open Trivia Database.
+
+* Bestimmen der URL für die Abfrage von 10 Multiple-Choice Quizfragen aus beliebigen Kategorien.
+* Im Manifest muss die Permission android.permission.INTERNET eingetragen werden.
+* Einbinden der Retrofit Libraries für den Zugriff auf die REST Schnittstelle
+* Definieren des API (Interface) für den Zugriff auf die TriviaDb Schnittstelle (über die gefundene URL).
+* Konfigurieren und bauen der API Implementierung mittels Retrofit Builder.
+* Verwenden des APIs im GameViewModel, um die Fragen bei Start des Spiels zu laden.
+* Bei Verwendung von suspend functions darf das nicht im Main-Thread erfolgen!
+* Aufräumen: Die vordefinierte Liste der Fragen (theQuestions) entfernen.
+* Error-Handling: Bei Fehlern während der Kommunikation mit dem Rest API soll eine entsprechende Fehlermldung 
+(weiß auf rotome Hintergrund) angezeigt werden
+* Umstellen des API von "Call" auf Kotlin coroutines
+* Einführen eines Query-Parameters für die Anzahl der Fragen (wir verwenden immer 10)

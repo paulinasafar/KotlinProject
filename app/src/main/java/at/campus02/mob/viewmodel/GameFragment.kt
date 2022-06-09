@@ -1,6 +1,7 @@
 package at.campus02.mob.viewmodel
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,11 +41,11 @@ class GameFragment : Fragment() {
 
         // Observers
         gameViewModel.question.observe(this) { question ->
-            binding.questionText.text = question.question
-            binding.button1Label.text = question.answerA
-            binding.button2Label.text = question.answerB
-            binding.button3Label.text = question.answerC
-            binding.button4Label.text = question.answerD
+            binding.questionText.text = Html.fromHtml(question.question, Html.FROM_HTML_MODE_LEGACY)
+            binding.button1Label.text = Html.fromHtml(question.answerA, Html.FROM_HTML_MODE_LEGACY)
+            binding.button2Label.text = Html.fromHtml(question.answerB, Html.FROM_HTML_MODE_LEGACY)
+            binding.button3Label.text = Html.fromHtml(question.answerC, Html.FROM_HTML_MODE_LEGACY)
+            binding.button4Label.text = Html.fromHtml(question.answerD, Html.FROM_HTML_MODE_LEGACY)
         }
         gameViewModel.buttonMarkers.observe(this) { buttonMarkerMap ->
             binding.button1Layout.setBackgroundResource(buttonMarkerMap[Choice.A] ?: R.drawable.button_background)
@@ -63,6 +64,16 @@ class GameFragment : Fragment() {
             progressIndicators.forEachIndexed { index, view ->
                 view.setBackgroundResource(markers[index])
             }
+        }
+        gameViewModel.error.observe(this) { errorMessage ->
+            if(errorMessage == null) {
+                binding.errorMessage.text = null
+                binding.errorMessage.visibility = View.GONE
+            } else {
+                binding.errorMessage.text = errorMessage
+                binding.errorMessage.visibility = View.VISIBLE
+            }
+
         }
 
         // User Aktionen
